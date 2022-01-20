@@ -3,6 +3,23 @@ import app_files.globals as globals
 
 
 def greedy(graph, output_file, heuristic_type='trivial heuristic'):
+    """
+    Greedy algorithm.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path tot the output file
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: None
+    """
     queue = [TreeNode(info=graph.initial_state,
                       parent=None,
                       g_cost=0,

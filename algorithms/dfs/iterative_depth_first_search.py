@@ -3,6 +3,30 @@ import app_files.globals as globals
 
 
 def DFI(graph, output_file, current_node, depth, number_of_solutions, heuristic_type):
+    """
+    Iterative DFS algorithm.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path tot the output file
+        :param current_node: TreeNode
+            the current_node of the search tree
+        :param depth: int
+            the maximum depth of the tree
+        :param number_of_solutions: int
+            the number of solutions to be found
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: int
+            the number of searched solutions
+    """
     if depth == 1 and graph.is_target(current_node.info):
         globals.update_end_time()
         current_node.print_path(output_file=output_file, print_cost=True, print_length=True)
@@ -32,6 +56,25 @@ def DFI(graph, output_file, current_node, depth, number_of_solutions, heuristic_
 
 
 def iterative_depth_first_search(graph, output_file, number_of_solutions=1, heuristic_type='trivial heuristic'):
+    """
+    Container for DFI algorithm.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path tot the output file
+        :param number_of_solutions: int
+            the number of solutions to be found
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: None
+    """
     for i in range(1, 11):
         if number_of_solutions == 0:
             return

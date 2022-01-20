@@ -16,10 +16,17 @@ from app_files.utils import check_valid_file
 
 import app_files.globals as globals
 
-# TODO ↓
-
 
 def list_algorithms():
+    """
+    Lists the algorithms that can be used in this app and reads the option of the user.
+    ```
+
+    Returns:
+    --------
+        :return: int
+            the user's choice of which algorithm he wants to use
+    """
     print('Algorithms:')
     print('1. Breadth First Search')
     print('2. Depth First Search')
@@ -40,6 +47,15 @@ def list_algorithms():
 
 
 def list_heuristics():
+    """
+        Lists the heuristics that can be used in this app and reads the option of the user.
+        ```
+
+        Returns:
+        --------
+            :return: int
+                the user's choice of which heuristic he wants to use
+    """
     heuristic_dictionary = {1: 'trivial heuristic', 2: 'first admissible heuristic',
                             3: 'second admissible heuristic', 4: 'inadmissible heuristic'}
 
@@ -61,11 +77,37 @@ def list_heuristics():
 
 
 class MainApp:
+    """
+    MainApp -> class for representing the main application data
+    ```
+
+    Attributes
+    ----------
+        :arg input_folder: str
+            the path to the input folder
+        :arg output_folder: str
+            the path to the output folder
+        :arg number_of_searched_solutions: int
+            the number of searched solutions, if applicable
+        :arg timeout: int
+            the timeout value
+
+    Methods:
+    --------
+        start_app(): None
+            Main function used to start the application.
+    """
     def __init__(self):
+        """
+        Constructs all the necessary attributes for the TreeNode object.
+        ```
+
+        """
         try:
             self.input_folder = argv[1]
             self.output_folder = argv[2]
             self.number_of_searched_solution = int(argv[3])
+            self.timeout = int(argv[4])
             sys.setrecursionlimit(6000)
 
         except IndexError:
@@ -81,6 +123,11 @@ class MainApp:
             print('Folder ' + self.output_folder + ' does not exist! It was created automatically by the system.')
 
     def start_app(self):
+        """
+        Main function used to start the application.
+        ```
+
+        """
         algorithm_option = list_algorithms()
         heuristic_option = list_heuristics()
 
@@ -90,12 +137,13 @@ class MainApp:
             graph = Graph(input_file_name)
 
             globals.update_start_time()
+            globals.initialize_timeout(self.timeout)
 
             output_file_name = 'out_' + file
             output_file = open(self.output_folder + '/' + output_file_name, 'w')
 
             if not check_valid_file(graph.initial_state, graph.target_heights):
-                output_file.write('Invalid input file! There are no solutions!')
+                output_file.write('There are no solutions!')
                 output_file.close()
                 continue
 

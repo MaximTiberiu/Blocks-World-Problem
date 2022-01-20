@@ -4,6 +4,25 @@ import app_files.globals as globals
 
 
 def uniform_cost_search(graph, output_file, number_of_solutions=1, heuristic_type='trivial heuristic'):
+    """
+    Unoptimized UCS algorithm.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path tot the output file
+        :param number_of_solutions: int
+            the number of solutions to be found
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: None
+    """
     priority_queue = PriorityQueue()
     priority_queue.put(TreeNode(info=graph.initial_state, parent=None))
 

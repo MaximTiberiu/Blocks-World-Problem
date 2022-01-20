@@ -3,6 +3,23 @@ import app_files.globals as globals
 
 
 def optimized_uniform_cost_search(graph, output_file, heuristic_type='trivial heuristic'):
+    """
+    Optimized UCS algorithm. Generates a single solution.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path to the output file
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: None
+    """
     opened_queue = [TreeNode(info=graph.initial_state,
                              parent=None,
                              g_cost=0,

@@ -3,6 +3,28 @@ import app_files.globals as globals
 
 
 def DFS(graph, output_file, current_node, number_of_solutions, heuristic_type):
+    """
+    DFS algorithm.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path tot the output file
+        :param current_node: TreeNode
+            the current_node of the search tree
+        :param number_of_solutions: int
+            the number of solutions to be found
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: int
+            the number of searched solutions
+    """
     if number_of_solutions <= 0:
         return number_of_solutions
 
@@ -33,6 +55,25 @@ def DFS(graph, output_file, current_node, number_of_solutions, heuristic_type):
 
 
 def depth_first_search(graph, output_file, number_of_solutions=1, heuristic_type='trivial heuristic'):
+    """
+    Container for DFS algorithm.
+    ```
+
+    Parameters:
+    -----------
+        :param graph: Graph
+            the problem graph
+        :param output_file: str
+            the path tot the output file
+        :param number_of_solutions: int
+            the number of solutions to be found
+        :param heuristic_type: str
+            the type of heuristic
+
+    Returns:
+    --------
+        :return: None
+    """
     DFS(graph=graph,
         output_file=output_file,
         current_node=TreeNode(info=graph.initial_state, parent=None),

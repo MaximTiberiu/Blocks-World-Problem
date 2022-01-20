@@ -10,12 +10,51 @@ import app_files.globals as globals
 
 
 class Graph:
-    # TODO docstring
+    """
+    Graph -> class for representing the problem's graph
+    ```
+
+    Attributes
+    ----------
+        :arg initial_state: list
+            the list of stacks representing the initial state of the node
+        :arg target_heights: int
+            the maximum value
+
+    Methods:
+    --------
+        is_target(): bool
+            Checks if a node state is the target state.
+        get_successors(): list
+            Gets the successors of a node.
+        get_h_cost(): int
+             Gets the h_cost of a block move.
+    """
     def __init__(self, input_file):
-        # TODO docstring
+        """
+        Constructs all the necessary attributes for the Graph object.
+        ```
+
+        Parameters:
+        -----------
+            :param input_file: str
+                the path to the input file
+        """
 
         def get_stacks(string):
-            # TODO docstring
+            """
+            Gets the stacks of the initial state of the problem.
+
+            Parameters:
+            -----------
+                :param string: str
+                    the content of the input file
+
+            Returns:
+            --------
+                :return: list
+                    the list of obtained stacks
+            """
             strings_stacks = string.strip().split('\n')
             stacks_list = [list(map(int, strings_stack.strip().split(';'))) if strings_stack != '~' else []
                            for strings_stack in strings_stacks]
@@ -27,10 +66,21 @@ class Graph:
         self.initial_state = get_stacks(input_file_content[0])
         self.target_heights = list(map(int, input_file_content[1].split()))
 
-        # print('Initial state: ', self.initial_state)
-        # print('Target heights: ', self.target_heights)
-
     def is_target(self, node_info):
+        """
+        Checks if a node state is the target state.
+        ```
+
+        Parameters:
+        -----------
+            :param node_info: list
+                the list of stacks of a node
+
+        Returns:
+        --------
+            :return: int
+                returns 1 if the node is target, otherwise, returns 0
+        """
         if len(node_info) != len(self.target_heights):
             return 0
 
@@ -40,6 +90,22 @@ class Graph:
         return 1
 
     def get_successors(self, current_node, heuristic_type):
+        """
+        Gets the successors of a node.
+        ```
+
+        Parameters:
+        -----------
+            :param current_node: TreeNode
+                the node
+            :param heuristic_type: str
+                the type of heuristic
+
+        Returns:
+        --------
+            :return: list
+                the successors' list of the current_node
+        """
         if datetime.now() > globals.timeout:
             return 'Time out!'
 
@@ -88,6 +154,22 @@ class Graph:
         return successors_list
 
     def get_h_cost(self, node, heuristic_type='trivial heuristic'):
+        """
+        Gets the h_cost of a block move.
+        ```
+
+        Parameters:
+        -----------
+            :param node: TreeNode
+                the node
+            :param heuristic_type: str
+                the type of heuristic
+
+        Returns:
+        --------
+            :return: int
+                the cost
+        """
         if heuristic_type == 'trivial heuristic':
             if self.is_target(node) == 0:
                 return get_min_cost(node)

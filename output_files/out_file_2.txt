@@ -1,0 +1,12 @@
+STEP 1:
+[1]         
+[1]         
+===========
+Cost: 0
+Path Length: 1
+Time: 0:00:00
+Total number of computed nodes: 0
+Max number of nodes: 0
+
+###########
+
